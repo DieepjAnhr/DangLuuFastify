@@ -32,7 +32,11 @@ const getCache = async (key) => {
 
 const clearCache = async (key) => {
     try {
-        await redisClient.del(key);
+        if (key.includes('*')) {
+            key = key.replace(/\*/g, '');
+        }
+        const keys = redisClient.keys(`${key}*`);
+        for (let i in keys) redisClient.del(keys[i]);
         return true;
     } catch (error) {
         console.log(error);
