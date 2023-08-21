@@ -3,11 +3,13 @@ require('dotenv').config();
 const fastify = require('fastify')({ logger: true });
 const redisClient = require('./configs/redis.config');
 const { AuthRouter } = require('./routers/auth');
+const { UserRouter } = require('./routers/user');
 const { PostRouter } = require('./routers/post');
 const PORT = 3000;
  
-PostRouter.forEach((route) => fastify.route(route));
-AuthRouter.forEach((route) => fastify.route(route));
+AuthRouter.map((route) => fastify.route(route));
+UserRouter.map((route) => fastify.route(route));
+PostRouter.map((route) => fastify.route(route));
 
 const main = async () => {
     try {
