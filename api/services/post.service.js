@@ -2,10 +2,13 @@ const { AppDataSource } = require("../configs/pg.config");
 
 class PostService {
     constructor () {}
-    async getAll() {
+    async getAll(query) {
         try {
+            const filter = {};
+            if (query?.id) filter.id = Number(query.id);
             const result = await (await AppDataSource).getRepository('posts').find({
-                where: { 
+                where: {
+                    ...filter, 
                     isDeleted: false 
                 }
             });

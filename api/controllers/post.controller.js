@@ -3,7 +3,8 @@ const { PostService } = require("../services/post.service");
 class PostController {
     async getAll(req, reply) {
         try {
-            const result = await PostService.prototype.getAll();
+            const query = req?.query;
+            const result = await PostService.prototype.getAll(query);
             return reply.code(200).send({
                 status: "successs",
                 message: "Success!",
