@@ -1,13 +1,13 @@
 require('reflect-metadata');
+require('dotenv').config();
 const fastify = require('fastify')({ logger: true });
 const redisClient = require('./configs/redis.config');
+const { AuthRouter } = require('./routers/auth');
+const { PostRouter } = require('./routers/post');
 const PORT = 3000;
-
-const PostRouter = require("./routers/post")
  
-PostRouter.forEach((route) => {
-    fastify.route(route)
-});
+PostRouter.forEach((route) => fastify.route(route));
+AuthRouter.forEach((route) => fastify.route(route));
 
 const main = async () => {
     try {

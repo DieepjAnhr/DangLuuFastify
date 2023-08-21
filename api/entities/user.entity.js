@@ -1,19 +1,31 @@
 const EntitySchema = require("typeorm").EntitySchema
 
-module.exports.PostDto = new EntitySchema({
-    name: "Post",
-    tableName: "posts",
+module.exports.UserDto = new EntitySchema({
+    name: "User",
+    tableName: "users",
     columns: {
         id: {
             primary: true,
             type: "int",
             generated: true,
         },
-        title: {
-            type: "varchar",
-        },
-        content: {
+        username: {
             type: "text",
+        },
+        password: {
+            type: "text",
+        },
+        firstName: {
+            type: "text",
+            nullable: true
+        },
+        lastName: {
+            type: "text",
+            nullable: true
+        },
+        address: {
+            type: "text",
+            nullable: true
         },
         createAt: {
             type: "date",

@@ -99,4 +99,4 @@ class PostController {
     }
 }
 
-module.exports = PostController;
+module.exports = { PostController };

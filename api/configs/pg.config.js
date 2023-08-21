@@ -1,5 +1,6 @@
 const typeorm = require("typeorm");
 const { PostDto } = require("../entities/post.entity");
+const { UserDto } = require("../entities/user.entity");
 
 const AppDataSource = new typeorm.DataSource({
     type: "postgres",
@@ -8,7 +9,7 @@ const AppDataSource = new typeorm.DataSource({
     username: "postgres",
     password: "postgres",
     database: "postgres",
-    entities: [PostDto],
+    entities: [UserDto,PostDto],
     synchronize: true,
     logging: false,
 });

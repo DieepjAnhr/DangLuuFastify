@@ -1,4 +1,5 @@
-const PostController = require('../controllers/post.controller');
+const { PostController } = require('../controllers/post.controller');
+const { auth } = require('../middleware/jwt');
 
 const PostRouter = [
     {
@@ -26,6 +27,7 @@ const PostRouter = [
                 }
             }
         },
+        preHandler: auth,
         handler: PostController.prototype.getAll
     },
     {
@@ -57,23 +59,27 @@ const PostRouter = [
                 }
             }
         },
+        preHandler: auth,
         handler: PostController.prototype.getById
     },
     {
         method: 'POST', 
         url: '/api/post/create',
+        preHandler: auth,
         handler: PostController.prototype.create
     },
     {
         method: 'PATCH',
         url: '/api/post/update/:id',
+        preHandler: auth,
         handler: PostController.prototype.update
     },
     {
         method: 'DELETE',
         url: '/api/post/delete/:id',
+        preHandler: auth,
         handler: PostController.prototype.delete
     }
 ];
 
-module.exports = PostRouter
+module.exports = { PostRouter };
